@@ -1,0 +1,148 @@
+{
+  "View": {
+    "prefix": "view",
+    "description": "View component ekler.",
+    "body": ["<View style={styles.$1}>", "  ", "</View>"]
+  },
+  "Text": {
+    "prefix": "text",
+    "description": "Text component ekler.",
+    "body": ["<Text style={styles.x}> $1 </Text>"]
+  },
+  "Button": {
+    "prefix": "button",
+    "description": "TouchableOpacity componenti ekler.",
+    "body": [
+      "<TouchableOpacity onPress={() => {}}>",
+      "   <Text> $1 </Text>",
+      "</TouchableOpacity>"
+    ]
+  },
+  "Style File": {
+    "prefix": "rns",
+    "description": "Temel bir style dosyası hazırlar.",
+    "body": [
+      "import { StyleSheet, Dimensions } from \"react-native\";",
+      "const { HEIGHT, WIDTH } = Dimensions.get(\"window\");",
+      "",
+      "export const styles = StyleSheet.create({",
+      "  container: {",
+      "    flex: 1,",
+      "  },",
+      "  center: {},",
+      "});",
+      ""
+    ]
+  },
+  "Screen File": {
+    "prefix": "rnc",
+    "description": "Redux'lı bir ekran dosyası hazırlar.",
+    "body": [
+      "import React, { Component } from \"react\";",
+      "import { Text, View } from \"react-native\";",
+      "",
+      "import { connect } from \"react-redux\";",
+      "import { bindActionCreators } from \"redux\";",
+      "",
+      "import { styles } from \"./style\";",
+      "import {} from \"../../../redux/actions/A_$1\";",
+      "",
+      "class $1 extends Component {",
+      "  render() {",
+      "    return (",
+      "      <View style={styles.container}>",
+      "        <Text style={styles.center}>$1 sayfasındasın.</Text>",
+      "      </View>",
+      "    );",
+      "  }",
+      "}",
+      "",
+      "export default connect(",
+      "  __ => ({",
+      "    //isAuth: state.R_Welcome.isAuth,",
+      "  }),",
+      "  dispatch => ({",
+      "    __: bindActionCreators(Object.assign({}), dispatch),",
+      "  }),",
+      ")($1);",
+      ""
+    ]
+  },
+  "create constuctor": {
+    "prefix": "constructor",
+    "description": "Constructor ayarlar.",
+    "body": [
+      "  constructor(props) {",
+      "    super(props);",
+      "    this.state = {",
+      "      $1: \"\",",
+      "    };",
+      "  }"
+    ]
+  },
+  "navigation": {
+    "prefix": "nav",
+    "description": "react navigation",
+    "body": ["this.props.navigation.navigate(\"xxxxxxxxx\")"]
+  },
+  "define Func": {
+    "prefix": "ok",
+    "description": "() => {",
+    "body": ["() => {", "   $1", "}"]
+  },
+  "create reducer": {
+    "prefix": "rnr",
+    "description": "Örnek bir reducer dosyası hazırlar.",
+    "body": [
+      "import { types } from \"../actions/A_$1\";",
+      "",
+      "const INITIAL_STATE = {",
+      "  xxxxx: \"\",",
+      "};",
+      "",
+      "export default (state = INITIAL_STATE, actions) => {",
+      "  switch (actions.type) {",
+      "    //////////////////////",
+      "    case types.YYYYYYY:",
+      "      return { ...state, loading: true };",
+      "",
+      "    default:",
+      "      return state;",
+      "  }",
+      "};",
+      ""
+    ]
+  },
+  "create action": {
+    "prefix": "rna",
+    "description": "Örnek bir action dosyası hazırlar.",
+    "body": [
+      "export const types = {",
+      "  XXXXXXXX_XXXXXXXX_XXXX: \"xxxxxxxxxx\",",
+      "};",
+      "",
+      "export const $1 = () => async dispatch => {};"
+    ]
+  },
+  "create Comp": {
+    "prefix": "rncom",
+    "description": "Temel bir component hazırlar.",
+    "body": [
+      "import React from \"react\";",
+      "import { View, Text } from \"react-native\";",
+      "",
+      "import { styles } from \"./style\";",
+      "",
+      "const $1 = ({ arg }) => {",
+      "  return (",
+      "    <View style={styles.container}>",
+      "      <Text style={styles.center}> okan </Text>",
+      "    </View>",
+      "  );",
+      "};",
+      "",
+      "export { $1 };",
+      ""
+    ]
+  }
+}
