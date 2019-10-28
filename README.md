@@ -44,8 +44,8 @@ $ yarn add redux-thunk redux-logger redux react-redux react-navigation-stack rea
     ...
   	"release": "react-native run-android --variant=release",
     "release-apk": "./gradlew bundleRelease",
-    "createScreen": "mkdir src/components/screens/S_${name} && touch src/redux/actions/A_${name}.js src/redux/reducers/R_${name}.js src/components/screens/S_${name}/index.js src/components/screens/S_${name}/style.js",
-    "createComponent": "mkdir src/components/common/${name} && touch src/components/common/${name}/index.js && touch src/components/common/${name}/style.js"
+    "createScreen": "chmod +x ./src/lib/bashs/cs.sh && ./src/lib/bashs/cs.sh ${name}",
+    "createComponent": "chmod +x ./src/lib/bashs/cc.sh && ./src/lib/bashs/cc.sh ${name}"
 	  ...
   },
   ....

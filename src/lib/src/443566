@@ -1,0 +1,14 @@
+import React from "react";
+import { View, Text } from "react-native";
+
+import { styles } from "./style";
+
+const TEMPNAME = ({ arg }) => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.center}> okan </Text>
+    </View>
+  );
+};
+
+export { TEMPNAME };
