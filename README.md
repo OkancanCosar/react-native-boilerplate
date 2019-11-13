@@ -42,11 +42,11 @@ $ yarn add redux-thunk redux-logger redux react-redux react-navigation-stack rea
   ....
   "scripts": {
     ...
-  	"release": "react-native run-android --variant=release",
-    "release-apk": "./gradlew bundleRelease",
+    "release": "cd .\\android & .\\gradlew clean & cd .. & react-native run-android --variant=release",
     "createScreen": "chmod +x ./src/lib/bashs/cs.sh && ./src/lib/bashs/cs.sh ${name}",
-    "createComponent": "chmod +x ./src/lib/bashs/cc.sh && ./src/lib/bashs/cc.sh ${name}"
-	  ...
+    "createComponent": "chmod +x ./src/lib/bashs/cc.sh && ./src/lib/bashs/cc.sh ${name}",
+    "shake": "adb shell input keyevent 82"
+    ...
   },
   ....
 }
@@ -63,6 +63,17 @@ $ name=ExampleScreenName npm run createScreen
 ### Projeye yeni bir ortak kullanılan component eklemek için dosyalarını oluşturma
 ```console
 $ name=HeaderLeft npm run createComponent
+```
+
+### Projenin release bir apk'sini oluşturma
+```console
+$ npm run release
+```
+
+### react-native debug menüsünün açma
+Bu işlem gerçek cihazlarda; cihazı titreterek de olur. Emülatörlerde CTRL+M kullanılabilir.
+```console
+$ npm run shake
 ```
 
 ### Snippet'ların kullanımı
