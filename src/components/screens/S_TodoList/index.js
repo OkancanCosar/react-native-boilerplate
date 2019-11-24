@@ -7,6 +7,8 @@ import { bindActionCreators } from "redux";
 import { ListView } from "../../common";
 import { Header, ListItem } from "./components";
 
+import Strings from "../../../config/Strings";
+
 import { styles } from "./style";
 import {
   GetListData,
@@ -36,7 +38,7 @@ class TodoList extends Component {
     return (
       <View style={styles.container}>
         <Header Navigation={navigation} _SyncData={__.GetListData} />
-        <Text style={styles.center}>TodoList sayfasındasın.</Text>
+        <Text style={styles.center}>{Strings.s1}</Text>
         <ListView
           Refreshing={IsRefreshing}
           _RefreshData={__.GetListData}

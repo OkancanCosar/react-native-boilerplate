@@ -3,23 +3,29 @@
   1- react-native 
   2- react-navigation
   3- redux 
-    bileşenlerini içeren temel bir sayfa oluşturan bir taslak oluşturur.
-
-  1- createScreen
-  2- createComponent
-    gibi scriptler eklenilerek klasör mimarisine uygun dosyalar oluşturulur.
+    temelleri üzerine kurulmuş,
+    1- Ui Pack içeren(react-native-elements)
+    2- Çoklu dili destekleyen(react-native-localization)
+    3- Icon Pack içeren(react-native-vector-icons)
+    4- Lottie animasyonlarını destekleyen
+    5- Cihaz internet bağlantısını ve yatay mı dikey mi tutulduğunu store'da saklayan
+    6- Özelleştirilmiş font tiplerini kullanabilen
+    7- Örnek listesinde
+      1- Sayfalama
+      2- Sonsuz kaydırma(Infinite Scroll)
+      3- Yenileme(Refresh Layout) olan bir boilerplate'dir.
 
   Verilen code snippets [link: okancancosar.code-snippets] ile belirli kısayollar kullanılabilir.
-    Bu snippets'ı kullanmak için dosyayı
+    [[Bu snippets'ı kullanmak için dosyayı
       home/YOURUSERNAME/.config/Code/User/snippets/okancancosar.code-snippets
-    dizinine atmalıyız.
+    dizinine atmalıyız.]]
 ```
 
 ## KURULUM
 
 ### Adım 1: Npm paketlerinin kurulumu
 ```console
-$ yarn add redux-thunk redux-logger redux react-redux react-navigation-stack react-navigation react-native-gesture-handler lottie-react-native react-native-elements react-native-vector-icons @react-native-community/netinfo
+$ yarn add redux-thunk redux-logger redux react-redux react-navigation-stack react-navigation react-native-gesture-handler lottie-react-native react-native-elements react-native-vector-icons @react-native-community/netinfo react-native-localization
 ```
 Bazen paketler doğru şekilde linklenmeyebilir. O zaman aşağıdaki gibi linkleme gerekebilir.
 ```console
@@ -99,3 +105,5 @@ $ npm run shake
 
 ## ROADMAP
   1- Realm ekleyerek offline first bir yapı kurmak
+  2- Tema ile gece/gündüz farklı görüntü elde etmek
+  3- Listeler için searchbar eklemek
