@@ -19,7 +19,12 @@
 
 ### Adım 1: Npm paketlerinin kurulumu
 ```console
-$ yarn add redux-thunk redux-logger redux react-redux react-navigation-stack react-navigation react-native-gesture-handler redux-api-middleware
+$ yarn add redux-thunk redux-logger redux react-redux react-navigation-stack react-navigation react-native-gesture-handler lottie-react-native react-native-elements react-native-vector-icons @react-native-community/netinfo
+```
+Bazen paketler doğru şekilde linklenmeyebilir. O zaman aşağıdaki gibi linkleme gerekebilir.
+```console
+$ react-native link react-native-vector-icons
+$ react-native link lottie-react-native
 ```
 
 ### Adım 2: /index.js dosyasını değiştir 
@@ -33,7 +38,12 @@ $ yarn add redux-thunk redux-logger redux react-redux react-navigation-stack rea
 
 ### Adım 3: Dosyaları kopyala
 ```jsx
-	/src
+  /src
+  /react-native-config.js
+```
+ve linkle
+```console
+$ react-native link
 ```
 
 ### Adım 4: Ekle package.json > scripts
@@ -42,7 +52,8 @@ $ yarn add redux-thunk redux-logger redux react-redux react-navigation-stack rea
   ....
   "scripts": {
     ...
-    "release": "cd .\\android & .\\gradlew clean & cd .. & react-native run-android --variant=release",
+    "android": "cd android && ./gradlew clean && cd .. && react-native run-android",
+    "release": "cd android && ./gradlew clean && cd .. && react-native run-android --variant=release",
     "createScreen": "chmod +x ./src/lib/bashs/cs.sh && ./src/lib/bashs/cs.sh ${name}",
     "createComponent": "chmod +x ./src/lib/bashs/cc.sh && ./src/lib/bashs/cc.sh ${name}",
     "shake": "adb shell input keyevent 82"
@@ -54,6 +65,11 @@ $ yarn add redux-thunk redux-logger redux react-redux react-navigation-stack rea
 
 
 ## KULLANIM
+
+### react-native run-android yerine
+```console
+$ npm run android
+```
 
 ### Projeye yeni bir ekran eklemek için dosyalarını oluşturma
 ```console

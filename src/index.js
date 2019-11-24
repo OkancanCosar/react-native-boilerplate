@@ -5,32 +5,23 @@ import { createStackNavigator } from "react-navigation-stack";
 
 import Store from "./redux/Store";
 
-import { HeaderLeft } from "./components/common";
-
-import S_Example from "./components/screens/S_Example";
+import S_TodoList from "./components/screens/S_TodoList";
+import S_Splash from "./components/screens/S_Splash";
 //...  add other screen imports
 
 const RootStack = createStackNavigator(
   {
-    Example: {
-      screen: S_Example,
-      navigationOptions: {
-        //headerLeft: null,
-        headerTitle: "ExampleSayafası",
-      },
+    Splash: {
+      screen: S_Splash,
+    },
+    TodoList: {
+      screen: S_TodoList,
     },
     //... add screens
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
-      headerLeft: <HeaderLeft navigation={navigation} />,
-      headerStyle: {
-        backgroundColor: "#ff0000",
-      },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        fontWeight: "bold",
-      },
+      header: null,
     }),
   },
 );
