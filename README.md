@@ -25,7 +25,7 @@
 
 ### Adım 1: Npm paketlerinin kurulumu
 ```console
-$ yarn add redux-thunk redux-logger redux react-redux react-navigation-stack react-navigation react-native-gesture-handler lottie-react-native react-native-elements react-native-vector-icons @react-native-community/netinfo react-native-localization
+$ yarn add redux-thunk redux-logger redux react-redux react-navigation-stack react-navigation react-native-gesture-handler lottie-react-native react-native-elements react-native-vector-icons @react-native-community/netinfo react-native-localization react-native-largelist-v3 react-native-spring-scrollview
 ```
 Bazen paketler doğru şekilde linklenmeyebilir. O zaman aşağıdaki gibi linkleme gerekebilir.
 ```console

@@ -48,6 +48,7 @@ class TodoList extends Component {
           Error={Error}
           Status={Status}
           ListItem={ListItem}
+          ListItemProps={{ navigation: navigation, refresh: refresh }}
         />
       </View>
     );

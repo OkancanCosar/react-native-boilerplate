@@ -12,6 +12,7 @@ const ListView = ({
   Status,
   List,
   ListItem,
+  ListItemProps,
   Refreshing,
   _RefreshData,
   _AddMoreData,
@@ -22,7 +23,7 @@ const ListView = ({
   return (
     <FlatList
       data={List}
-      renderItem={({ item }) => <ListItem Item={item} />}
+      renderItem={({ item }) => <ListItem Item={item} ListItemProps={ListItemProps} />}
       keyExtractor={i => Math.random().toString()}
       contentContainerStyle={{ flexGrow: 1 }}
       ListEmptyComponent={() => <EmptyList />}

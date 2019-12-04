@@ -4,9 +4,15 @@ import { ListItem as RNEListItem } from "react-native-elements";
 
 import { Image } from "../../../common";
 
-const ListItem = ({ Item }) => {
+const ListItem = ({ Item, ListItemProps }) => {
+  const { navigation, refresh } = ListItemProps || {};
+
   return (
     <RNEListItem
+      onPress={() => {
+        console.log(refresh);
+        console.log(navigation);
+      }}
       title={Item.title}
       subtitle={`${Item.completed} (${Item.completed})`}
       leftAvatar={
