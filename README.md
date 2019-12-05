@@ -44,6 +44,7 @@ $ react-native link lottie-react-native
 
 ### Adım 3: Dosyaları kopyala
 ```jsx
+  /scripts
   /src
   /react-native-config.js
 ```
@@ -58,6 +59,8 @@ $ react-native link
   ....
   "scripts": {
     ...
+    "postinstall": "node scripts/react-scrollview-fix.js",
+    "start": "react-native start",
     "android": "cd android && ./gradlew clean && cd .. && react-native run-android",
     "release": "cd android && ./gradlew clean && cd .. && react-native run-android --variant=release",
     "createScreen": "chmod +x ./src/lib/bashs/cs.sh && ./src/lib/bashs/cs.sh ${name}",
