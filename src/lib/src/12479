@@ -30,7 +30,6 @@ class TEMPNAME extends Component {
       Loading,
       Error,
       Status,
-      IsRefreshing,
 
       refresh,
     } = this.props;
@@ -40,7 +39,6 @@ class TEMPNAME extends Component {
         <Header Navigation={navigation} _SyncData={__.GetListData} />
         <Text style={styles.center}>{Strings.s1}</Text>
         <ListView
-          Refreshing={IsRefreshing}
           _RefreshData={__.GetListData}
           _AddMoreData={__.AddDataToListview}
           List={List}

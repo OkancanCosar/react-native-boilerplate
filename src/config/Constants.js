@@ -1,5 +1,5 @@
 export default Constants = {
   firstConstant: "okancancosar",
-  ListBatchSize: 30,
+  ListBatchSize: 100,
   Threshold: 1,
 };
