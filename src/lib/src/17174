@@ -3,7 +3,6 @@ import Store from "../Store";
 import Network from "../../config/Network";
 
 const CN = "TEMPNAME";
-const BatchSize = 5;
 export const types = {
   GET_SERVER_START: `${CN} sunucudan alınmaya başladı.`,
   GET_SERVER_SUCCESS: `${CN} sunucudan alınması başarılı.`,
@@ -69,7 +68,7 @@ export const AddDataToListview = () => async dispatch => {
 
     await dispatch({ type: types.APPEND_LIST_SUCCESS });
   } catch (error) {
-    console.error("A_TodoList:AddDataToListview::" + error);
+    console.error("A_TEMPNAME:AddDataToListview::" + error);
     await dispatch({
       type: types.APPEND_LIST_FAIL,
       payload: error,

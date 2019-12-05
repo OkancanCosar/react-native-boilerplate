@@ -2,11 +2,9 @@
 KAYNAK="src/lib/src"
 SOURCE="src"
 
-## network and endpoints waiting
-
 #### Kaynak dosyalar için değişkenleştirilmiş dosya yolları
-SOURCE_ACTION_FILE_PATH="${KAYNAK}/17174" #
-SOURCE_REDUCER_FILE_PATH="${KAYNAK}/17175" #
+SOURCE_ACTION_FILE_PATH="${KAYNAK}/17174"
+SOURCE_REDUCER_FILE_PATH="${KAYNAK}/17175"
 SOURCE_INDEX_FILE_PATH="${KAYNAK}/12479"
 SOURCE_STYLE_FILE_PATH="${KAYNAK}/12478"
 SOURCE_HEADER_FILE_PATH="${KAYNAK}/3332"
@@ -17,9 +15,16 @@ SOURCE_LISTITEM_FILE_PATH="${KAYNAK}/3334"
 ACTIONS_PATH="${SOURCE}/redux/actions"
 REDUCERS_PATH="${SOURCE}/redux/reducers"
 SCREEN_PATH="${SOURCE}/components/screens"
+CONFIG_PATH="${SOURCE}/config"
 
 #### Dosyalardaki değişecek text
 CHANGE_TEXT="TEMPNAME"
+T1="\/\/...  add other reducer imports"
+T2="\/\/... add reducer"
+T3="\/\/...  add other screen imports"
+T4="\/\/... add screens"
+T5="\/\/ endpoints"
+T6="\/\/..."
 
 #### action dosyası kopyalandı.
 cp "${SOURCE_ACTION_FILE_PATH}" "${ACTIONS_PATH}/"
@@ -33,7 +38,7 @@ mv "${REDUCERS_PATH}/17175" "${REDUCERS_PATH}/R_${1}.js"
 
 #### dosya düzeltmesi yapıldı
 sed -i "s/${CHANGE_TEXT}/${1}/" "${REDUCERS_PATH}/R_${1}.js"
-sed -i "s/${CHANGE_TEXT}/${1}/" "${ACTIONS_PATH}/R_${1}.js"
+sed -i "s/${CHANGE_TEXT}/${1}/" "${ACTIONS_PATH}/A_${1}.js"
 
 #### ekran dosyaları için klasörü oluştur.
 mkdir "${SCREEN_PATH}/S_${1}"
@@ -53,6 +58,11 @@ sed -i "s/${T2}/R_${1},\n  ${T2}/" "${REDUCERS_PATH}/index.js"
 #### src/indexindeki ekran importlar halledildi.
 sed -i "s/${T3}/import S_${1} from \".\/components\/screens\/S_${1}\";\n${T3}/" "${SOURCE}/index.js"
 sed -i "s/${T4}/${1}: {\n      screen: S_${1},\n    },\n    ${T4}/" "${SOURCE}/index.js"
+
+#### endpoint'e link eklendi eklendi.
+sed -i "s/${T5}/${T5}\nGet${$1}Url: \`\${EndPoint1}/\`," "${CONFIG_PATH}/EndPoints.js"
+#### newtork'e fonksiyon eklendi eklendi eklendi.
+sed -i "s/${T6}/${T6}\nget${1}Network: async () => { const URL = \`\${EndPoints.GetTodoItemsUrl}\`; const PARAMS = {};return await _fetchGet(URL, PARAMS);}," "${CONFIG_PATH}/Network.js"
 
 #### componentler için header index ve listitem eklenecek.
 mkdir "${SCREEN_PATH}/S_${1}/components"
