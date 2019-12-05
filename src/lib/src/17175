@@ -1,3 +1,4 @@
+import { createFilter } from "react-native-search-filter";
 import { types } from "../actions/A_TEMPNAME";
 import Constants from "../../config/Constants";
 
@@ -7,8 +8,8 @@ const INITIAL_STATE = {
   Loading: false,
   Error: null,
   Status: null,
-  IsRefreshing: false,
 
+  searchTerm: "",
   refresh: 0,
 };
 
@@ -105,17 +106,29 @@ export default (state = INITIAL_STATE, actions) => {
     case types.APPEND_LIST_START:
       return { ...state };
     case types.APPEND_LIST_SUCCESS:
-      return {
-        ...state,
-        List: state.List.concat(
-          state.FullList.slice(
-            state.List.length,
-            state.List.length + Constants.ListBatchSize,
+      if (state.searchTerm == null || state.searchTerm == "")
+        return {
+          ...state,
+          List: state.List.concat(
+            state.FullList.slice(
+              state.List.length,
+              state.List.length + Constants.ListBatchSize,
+            ),
           ),
-        ),
-      };
+        };
     case types.APPEND_LIST_FAIL:
       return { ...state, Error: actions.payload };
+
+    //* SEARCH TERM CHANGE
+    case types.CHANGE_SEARCHTERM:
+      return {
+        ...state,
+        searchTerm: actions.payload,
+        List: state.FullList.filter(
+          createFilter(actions.payload, Constants.FilterColumns.TEMPNAME),
+        ),
+      };
+
     default:
       return state;
   }

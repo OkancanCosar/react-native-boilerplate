@@ -18,6 +18,11 @@ export default Strings = new LocalizedStrings({
     ListHeaderS3: "Yenileniyor ...",
     ListHeaderS4: "Yenilemeden vazgeç",
     ListHeaderS5: "Yenilendi",
+
+    Ok: "Tamam",
+    Cancel: "İptal",
+    Clean: "Temizle",
+    SearchInputPlaceholder: "Birşeyler yazın.",
   },
   it: {},
 });

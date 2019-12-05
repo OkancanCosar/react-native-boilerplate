@@ -1,4 +1,5 @@
 import React from "react";
+import { View } from "react-native";
 import { LargeList } from "react-native-largelist-v3";
 
 import {
@@ -6,7 +7,9 @@ import {
   EmptyList,
   LongListFooter,
   LongListHeader,
+  SearchInput,
 } from "./components";
+import { styles } from "./style";
 
 let _list = null;
 
@@ -19,30 +22,38 @@ const LongListView = ({
   ListItemProps,
   _RefreshData,
   _AddMoreData,
+  SearchText,
+  _OnSearchTextChange,
 }) => {
   if (Loading || Error || Status)
     return <LoadOrErr Status={Status} Loading={Loading} AError={Error} />;
-  if (List && List.length == 0) return <EmptyList />;
+  if (!SearchText && List && List.length == 0) return <EmptyList />;
 
   return (
-    <LargeList
-      ref={ref => (_list = ref)}
-      data={[{ items: List }]}
-      heightForIndexPath={() => 88}
-      loadingFooter={LongListFooter}
-      refreshHeader={LongListHeader}
-      onLoading={() => {
-        _AddMoreData();
-        setTimeout(() => _list.endLoading(), 200);
-      }}
-      onRefresh={() => {
-        _RefreshData();
-        setTimeout(() => _list.endRefresh(), 200);
-      }}
-      renderIndexPath={({ row }) => (
-        <ListItem Item={List[row]} ListItemProps={ListItemProps} />
-      )}
-    />
+    <View style={styles.container}>
+      <SearchInput
+        SearchText={SearchText}
+        _OnChangeText={_OnSearchTextChange}
+      />
+      <LargeList
+        ref={ref => (_list = ref)}
+        data={[{ items: List }]}
+        heightForIndexPath={() => 88}
+        loadingFooter={LongListFooter}
+        refreshHeader={LongListHeader}
+        onLoading={() => {
+          _AddMoreData();
+          setTimeout(() => _list.endLoading(), 200);
+        }}
+        onRefresh={() => {
+          _RefreshData();
+          setTimeout(() => _list.endRefresh(), 200);
+        }}
+        renderIndexPath={({ row }) => (
+          <ListItem Item={List[row]} ListItemProps={ListItemProps} />
+        )}
+      />
+    </View>
   );
 };
 

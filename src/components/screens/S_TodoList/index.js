@@ -4,7 +4,7 @@ import { Text, View } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { ListView } from "../../common";
+import { LongListView } from "../../common";
 import { Header, ListItem } from "./components";
 
 import Strings from "../../../config/Strings";
@@ -14,6 +14,7 @@ import {
   GetListData,
   syncData,
   AddDataToListview,
+  changeSearchTermText,
 } from "../../../redux/actions/A_TodoList";
 
 class TodoList extends Component {
@@ -30,7 +31,7 @@ class TodoList extends Component {
       Loading,
       Error,
       Status,
-      IsRefreshing,
+      searchTerm,
 
       refresh,
     } = this.props;
@@ -39,8 +40,7 @@ class TodoList extends Component {
       <View style={styles.container}>
         <Header Navigation={navigation} _SyncData={__.GetListData} />
         <Text style={styles.center}>{Strings.s1}</Text>
-        <ListView
-          Refreshing={IsRefreshing}
+        <LongListView
           _RefreshData={__.GetListData}
           _AddMoreData={__.AddDataToListview}
           List={List}
@@ -49,6 +49,8 @@ class TodoList extends Component {
           Status={Status}
           ListItem={ListItem}
           ListItemProps={{ navigation: navigation, refresh: refresh }}
+          SearchText={searchTerm}
+          _OnSearchTextChange={__.changeSearchTermText}
         />
       </View>
     );
@@ -62,12 +64,18 @@ export default connect(
     Loading: __.R_TodoList.Loading,
     Error: __.R_TodoList.Error,
     Status: __.R_TodoList.Status,
+    searchTerm: __.R_TodoList.searchTerm,
 
     refresh: __.R_TodoList.refresh,
   }),
   dispatch => ({
     __: bindActionCreators(
-      Object.assign({ GetListData, syncData, AddDataToListview }),
+      Object.assign({
+        GetListData,
+        syncData,
+        AddDataToListview,
+        changeSearchTermText,
+      }),
       dispatch,
     ),
   }),

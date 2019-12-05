@@ -24,6 +24,8 @@ export const types = {
   APPEND_LIST_START: `${CN} listesine ekleme başladı.`,
   APPEND_LIST_SUCCESS: `${CN} listesine ekleme başarılı.`,
   APPEND_LIST_FAIL: `${CN} listesine ekleme başarısız`,
+
+  CHANGE_SEARCHTERM: `${CN} listesine arama inputu değişti.`,
 };
 
 export const GetListData = () => async dispatch => {
@@ -75,4 +77,8 @@ export const AddDataToListview = () => async dispatch => {
       payload: error,
     });
   }
+};
+
+export const changeSearchTermText = text => async dispatch => {
+  dispatch({ type: types.CHANGE_SEARCHTERM, payload: text });
 };
