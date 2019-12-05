@@ -62,6 +62,7 @@ $ react-native link
     "release": "cd android && ./gradlew clean && cd .. && react-native run-android --variant=release",
     "createScreen": "chmod +x ./src/lib/bashs/cs.sh && ./src/lib/bashs/cs.sh ${name}",
     "createComponent": "chmod +x ./src/lib/bashs/cc.sh && ./src/lib/bashs/cc.sh ${name}",
+    "createListScreen": "chmod +x ./src/lib/bashs/cls.sh && ./src/lib/bashs/cls.sh",
     "shake": "adb shell input keyevent 82"
     ...
   },
@@ -80,6 +81,11 @@ $ npm run android
 ### Projeye yeni bir ekran eklemek için dosyalarını oluşturma
 ```console
 $ name=ExampleScreenName npm run createScreen
+```
+
+### Projeye liste içeren bir ekran eklemek için 
+```console
+$ yarn createListScreen ExampleListScreenName
 ```
 
 ### Projeye yeni bir ortak kullanılan component eklemek için dosyalarını oluşturma

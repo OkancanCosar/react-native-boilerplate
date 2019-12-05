@@ -55,7 +55,7 @@ export default Network = {
     }
     await dispatch({ type: errType, payload: message });
   },
-  //....
+  // networkFunctions
   getTodoListNetwork: async () => {
     const URL = `${EndPoints.GetTodoItemsUrl}`;
     const PARAMS = {};

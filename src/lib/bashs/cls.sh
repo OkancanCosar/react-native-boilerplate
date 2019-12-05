@@ -24,7 +24,7 @@ T2="\/\/... add reducer"
 T3="\/\/...  add other screen imports"
 T4="\/\/... add screens"
 T5="\/\/ endpoints"
-T6="\/\/..."
+T6="\/\/ networkFunctions"
 
 #### action dosyası kopyalandı.
 cp "${SOURCE_ACTION_FILE_PATH}" "${ACTIONS_PATH}/"
@@ -60,9 +60,9 @@ sed -i "s/${T3}/import S_${1} from \".\/components\/screens\/S_${1}\";\n${T3}/" 
 sed -i "s/${T4}/${1}: {\n      screen: S_${1},\n    },\n    ${T4}/" "${SOURCE}/index.js"
 
 #### endpoint'e link eklendi eklendi.
-sed -i "s/${T5}/${T5}\nGet${$1}Url: \`\${EndPoint1}/\`," "${CONFIG_PATH}/EndPoints.js"
+sed -i "s/${T5}/${T5}\n  Get${1}Url: \`\${EndPoint1}\/${1}\`,/" "${CONFIG_PATH}/EndPoints.js"
 #### newtork'e fonksiyon eklendi eklendi eklendi.
-sed -i "s/${T6}/${T6}\nget${1}Network: async () => { const URL = \`\${EndPoints.GetTodoItemsUrl}\`; const PARAMS = {};return await _fetchGet(URL, PARAMS);}," "${CONFIG_PATH}/Network.js"
+sed -i "s/${T6}/${T6}\n  get${1}Network: async () => {\n    const URL = \`\${EndPoints.Get${1}Url}\`;\n    const PARAMS = {};\n    return await _fetchGet(URL, PARAMS);\n  },/" "${CONFIG_PATH}/Network.js"
 
 #### componentler için header index ve listitem eklenecek.
 mkdir "${SCREEN_PATH}/S_${1}/components"
