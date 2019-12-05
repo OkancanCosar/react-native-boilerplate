@@ -1,4 +1,9 @@
 {
+  "Var": {
+    "prefix": "var",
+    "description": "${} ekler.",
+    "body": "${$1}"
+  },
   "View": {
     "prefix": "view",
     "description": "View component ekler.",
