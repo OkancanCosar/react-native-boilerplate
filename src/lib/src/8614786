@@ -5,7 +5,7 @@ import { DBHelper } from "./DBHelper";
 import { types } from "../redux/actions/A_TEMPNAME";
 
 const DbName = TEMPNAME.DbName;
-const Realm = realm.objects(TEMPNAME.DbName);
+const Realm = realm.objects(DbName);
 
 export const isTableEmpty = () => {
   try {
