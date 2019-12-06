@@ -130,8 +130,11 @@ $ yarn shake
 2- Verilen prefix'i yazdıktan sonra CTRL+SPACE kombinasyonunu kullanmak
 
 ## TROUBLESHOOTING
+> Windows işletim sistemi kullanıyorsanız; bash'inize bağlı olarak chmod komutunu tanımayabilir. Bu komut unix tabanlıdır. Eğer windows'da da kullanmak isterseniz 
+1. Git'in windows uygulamasını yükleyin [Buradan...](https://git-scm.com/downloads)
+2. Yükleme tamamlandıktan sonra proje dosyasının içine girip, boş alana sağ tıkladıktan sonra(Görünüm, Sıralama Ölçütü, Yenile...vb); Git Bash Here seçeneği gelecektir. Burada scriptleri unix sistemdeki gibi çalıştırabilirsiniz.
 
-Eğer Text input ile ilgili bir hata görüyorsanız; bu LongListview ile alakalı(react-native-largelist-v3) bu hata çözümü için:
+> Eğer Text input ile ilgili bir hata görüyorsanız; bu LongListview ile alakalı(react-native-largelist-v3) bu hata çözümü için:
 
 ```console
 $ yarn postinstall
