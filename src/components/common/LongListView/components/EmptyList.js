@@ -2,8 +2,8 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import { Lottie } from "../..";
-import Assets from "../../../../assets";
-import Strings from "../../../../config/Strings";
+import { Assets } from "../../../../assets";
+import { Strings } from "../../../../config";
 
 const EmptyList = ({}) => {
   return (

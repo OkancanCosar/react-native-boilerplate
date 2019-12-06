@@ -26,7 +26,7 @@ const LongListView = ({
   _OnSearchTextChange,
 }) => {
   if (Loading || Error || Status)
-    return <LoadOrErr Status={Status} Loading={Loading} AError={Error} />;
+    return <LoadOrErr Status={Status} Loading={Loading} Error={Error} />;
   if (!SearchText && List && List.length == 0) return <EmptyList />;
 
   return (
@@ -43,11 +43,11 @@ const LongListView = ({
         refreshHeader={LongListHeader}
         onLoading={() => {
           _AddMoreData();
-          setTimeout(() => _list.endLoading(), 200);
+          setTimeout(() => _list && _list.endLoading(), 200);
         }}
         onRefresh={() => {
           _RefreshData();
-          setTimeout(() => _list.endRefresh(), 200);
+          setTimeout(() => _list && _list.endRefresh(), 200);
         }}
         renderIndexPath={({ row }) => (
           <ListItem Item={List[row]} ListItemProps={ListItemProps} />

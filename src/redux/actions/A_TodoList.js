@@ -1,9 +1,13 @@
 import Store from "../Store";
-
-import Network from "../../config/Network";
+import { Network, Strings } from "../../config";
+import {
+  insertTodoListIntoDB,
+  getAllTodoListFromDB,
+  isTableEmpty,
+  isTableOutOfDate,
+} from "../../database/TodoListDB";
 
 const CN = "TodoList";
-const BatchSize = 5;
 export const types = {
   GET_SERVER_START: `${CN} sunucudan alınmaya başladı.`,
   GET_SERVER_SUCCESS: `${CN} sunucudan alınması başarılı.`,
@@ -13,9 +17,9 @@ export const types = {
   GET_DB_SUCCESS: `${CN} veritabanından alınması başarılı.`,
   GET_DB_FAIL: `${CN} veritabanından alınması başarısız`,
 
-  POST_DB_START: `${CN} veritabanına alınmaya başladı.`,
-  POST_DB_SUCCESS: `${CN} veritabanına kaydı başarılı.`,
-  POST_DB_FAIL: `${CN} veritabanına kaydı başarısız`,
+  INSERT_DB_START: `${CN} veritabanına alınmaya başladı.`,
+  INSERT_DB_SUCCESS: `${CN} veritabanına kaydı başarılı.`,
+  INSERT_DB_FAIL: `${CN} veritabanına kaydı başarısız`,
 
   REFRESH_LIST_START: `${CN} listesi yenilenmeye başladı.`,
   REFRESH_LIST_SUCCESS: `${CN} listesi yenilenmesi başarılı.`,
@@ -29,33 +33,55 @@ export const types = {
 };
 
 export const GetListData = () => async dispatch => {
-  // online kontrolü
-  if (true) {
-    await getDataOnline(dispatch);
-  } else {
-    // offline
-    await getDataOffline(dispatch);
+  /**
+    Online  -> tableEmpty(T)       -> getDataFromServer
+    Online  -> tableEmpty(F)       -> isTableOutOfDate(T)   -> getDataFromServer
+    Online  -> tableEmpty(F)       -> isTableOutOfDate(F)   -> getDataFromLocalDB
+    Offline -> getDataFromLocalDB
+   */
+  if (Store.getState().R_Splash.isConnected) {
+    if (isTableEmpty()) await getDataOnline(dispatch);
+    else {
+      if (isTableOutOfDate()) await getDataOnline(dispatch);
+      else getDataOffline(dispatch);
+    }
+  } else getDataOffline(dispatch);
+};
+
+const getDataOffline = dispatch => {
+  dispatch({ type: types.GET_DB_START });
+  try {
+    dispatch({
+      type: types.GET_DB_SUCCESS,
+      payload: getAllTodoListFromDB(),
+    });
+  } catch (error) {
+    console.error("A_TodoList:getDataOffline::" + error);
+    dispatch({ type: types.GET_DB_FAIL, payload: error });
   }
 };
 
-const getDataOffline = async dispatch => {};
-
 const getDataOnline = async dispatch => {
-  await dispatch({ type: types.GET_SERVER_START });
+  dispatch({ type: types.GET_SERVER_START });
   try {
     let res = await Network.getTodoListNetwork();
-    const status = await res.status;
+    const status = res.status;
     if (status == 200) {
       const restData = await res.json();
 
-      await dispatch({ type: types.GET_SERVER_SUCCESS, payload: restData });
-
-      // await saveToDb(restData, dispatch);
+      if (restData.length) {
+        dispatch({ type: types.GET_SERVER_SUCCESS, payload: restData });
+        insertTodoListIntoDB(restData, dispatch);
+      } else
+        dispatch({
+          type: types.GET_SERVER_FAIL,
+          payload: Strings.ServerUnexpectedData,
+        });
     } else
       Network.responseErrorHandler(status, dispatch, types.GET_SERVER_FAIL);
   } catch (error) {
     console.error("A_TodoList:getDataOnline::" + error);
-    await dispatch({
+    dispatch({
       type: types.GET_SERVER_FAIL,
       payload: error,
     });
@@ -63,22 +89,31 @@ const getDataOnline = async dispatch => {
 };
 
 export const syncData = () => async dispatch => {
-  await getDataOnline(dispatch);
-};
-export const AddDataToListview = () => async dispatch => {
   try {
-    await dispatch({ type: types.APPEND_LIST_START });
-
-    await dispatch({ type: types.APPEND_LIST_SUCCESS });
+    dispatch({ type: types.REFRESH_LIST_START });
+    await getDataOnline(dispatch);
+    dispatch({ type: types.REFRESH_LIST_SUCCESS });
   } catch (error) {
     console.error("A_TodoList:AddDataToListview::" + error);
-    await dispatch({
+    dispatch({
+      type: types.REFRESH_LIST_FAIL,
+      payload: error,
+    });
+  }
+};
+export const AddDataToListview = () => dispatch => {
+  try {
+    dispatch({ type: types.APPEND_LIST_START });
+    dispatch({ type: types.APPEND_LIST_SUCCESS });
+  } catch (error) {
+    console.error("A_TodoList:AddDataToListview::" + error);
+    dispatch({
       type: types.APPEND_LIST_FAIL,
       payload: error,
     });
   }
 };
 
-export const changeSearchTermText = text => async dispatch => {
+export const changeSearchTermText = text => dispatch => {
   dispatch({ type: types.CHANGE_SEARCHTERM, payload: text });
 };

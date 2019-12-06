@@ -1,6 +1,6 @@
 const EndPoint1 = "https://jsonplaceholder.typicode.com";
 
-export default EndPoints = {
+export const EndPoints = {
   // network
   MethodPost: "POST",
   MethodGet: "GET",

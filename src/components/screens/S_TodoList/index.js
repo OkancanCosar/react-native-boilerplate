@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import { LongListView } from "../../common";
 import { Header, ListItem } from "./components";
 
-import Strings from "../../../config/Strings";
+import { Strings } from "../../../config";
 
 import { styles } from "./style";
 import {
@@ -38,7 +38,7 @@ class TodoList extends Component {
 
     return (
       <View style={styles.container}>
-        <Header Navigation={navigation} _SyncData={__.GetListData} />
+        <Header Navigation={navigation} _SyncData={__.syncData} />
         <Text style={styles.center}>{Strings.s1}</Text>
         <LongListView
           _RefreshData={__.GetListData}

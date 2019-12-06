@@ -8,8 +8,8 @@ import {
   Text,
 } from "react-native";
 
-import Assets from "../../../../assets";
-import Strings from "../../../../config/Strings";
+import { Assets } from "../../../../assets";
+import { Strings } from "../../../../config";
 
 export class LongListHeader extends RefreshHeader {
   static height = 80;

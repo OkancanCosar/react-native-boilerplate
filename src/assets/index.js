@@ -1,4 +1,4 @@
-export default Assets = {
+export const Assets = {
   Anims: {
     loading: require("./anims/loading.json"),
     notfound: require("./anims/notfound.json"),

@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import { Lottie } from "../..";
-import Assets from "../../../../assets";
+import { Assets } from "../../../../assets";
 
 const LoadOrErr = ({ Loading, Error, Status }) => {
   if (Status) {

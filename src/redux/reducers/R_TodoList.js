@@ -1,6 +1,6 @@
 import { createFilter } from "react-native-search-filter";
 import { types } from "../actions/A_TodoList";
-import Constants from "../../config/Constants";
+import { Constants } from "../../config/Constants";
 
 const INITIAL_STATE = {
   FullList: null,
@@ -57,6 +57,7 @@ export default (state = INITIAL_STATE, actions) => {
         Loading: false,
         Error: null,
         FullList: actions.payload,
+        List: actions.payload.slice(0, Constants.ListBatchSize),
         Status: null,
       };
     case types.GET_DB_FAIL:
@@ -67,14 +68,6 @@ export default (state = INITIAL_STATE, actions) => {
         Error: actions.payload,
         Status: null,
       };
-
-    //* LOCAL VERİTABANINA KAYIT İŞLEMLERİ
-    case types.POST_DB_START:
-      return { ...state };
-    case types.POST_DB_SUCCESS:
-      return { ...state };
-    case types.POST_DB_FAIL:
-      return { ...state };
 
     //* REFRESH İŞLEMLERİ
     case types.REFRESH_LIST_START:

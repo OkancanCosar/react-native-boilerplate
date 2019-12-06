@@ -38,7 +38,7 @@ class TEMPNAME extends Component {
 
     return (
       <View style={styles.container}>
-        <Header Navigation={navigation} _SyncData={__.GetListData} />
+        <Header Navigation={navigation} _SyncData={__.syncData} />
         <Text style={styles.center}>{Strings.s1}</Text>
         <LongListView
           _RefreshData={__.GetListData}
