@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import { LongListView } from "../../common";
 import { Header, ListItem } from "./components";
 
-import Strings from "../../../config/Strings";
+import { Strings } from "../../../config/Strings";
 
 import { styles } from "./style";
 import {
