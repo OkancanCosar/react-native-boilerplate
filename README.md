@@ -40,13 +40,9 @@ $ react-native link PAKET_ADI
 ```
 
 ### Adım 2: /index.js dosyasını değiştir
-
-```jsx
-import App from "./App";
-```
-
-```jsx
-import App from "./src";
+```diff
+- import App from "./App";
++ import App from "./src";
 ```
 
 ### Adım 3: Dosyaları kopyala
