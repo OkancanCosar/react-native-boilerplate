@@ -11,7 +11,7 @@ export const isTableEmpty = () => {
   try {
     return Realm.slice(0, 1).length < 0;
   } catch (error) {
-    console.error(`${DbName}DB::isTableEmpty::${error}`);
+    console.error(`${DbName}::isTableEmpty::${error}`);
     return true;
   }
 };
@@ -24,7 +24,7 @@ export const isTableOutOfDate = () => {
       DBHelper.getDayVal(DBHelper.getNow())
     );
   } catch (error) {
-    console.error(`${DbName}DB::isTableOutOfDate::${error}`);
+    console.error(`${DbName}::isTableOutOfDate::${error}`);
     return true;
   }
 };
@@ -33,7 +33,7 @@ export const getAllTEMPNAMEFromDB = () => {
   try {
     return Realm.sorted(Constants.SortColumns.TEMPNAME);
   } catch (error) {
-    console.error(`${DbName}DB::getAllTEMPNAMEFromDB::${error}`);
+    console.error(`${DbName}::getAllTEMPNAMEFromDB::${error}`);
     return false;
   }
 };
@@ -61,7 +61,7 @@ export const insertTEMPNAMEIntoDB = (Data, dispatch) => {
     return true;
   } catch (error) {
     dispatch({ type: types.INSERT_DB_FAIL, payload: error });
-    console.error(`${DbName}DB::insertTEMPNAMEIntoLocalDatabase::${error}`);
+    console.error(`${DbName}::insertTEMPNAMEIntoLocalDatabase::${error}`);
     return false;
   }
 };

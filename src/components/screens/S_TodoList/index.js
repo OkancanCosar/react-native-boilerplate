@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import { LongListView } from "../../common";
 import { Header, ListItem } from "./components";
 
-import { Strings } from "../../../config";
+import { Strings, Colors } from "../../../config";
 
 import { styles } from "./style";
 import {
@@ -16,6 +16,7 @@ import {
   AddDataToListview,
   changeSearchTermText,
 } from "../../../redux/actions/A_TodoList";
+import { toggleTheme } from "../../../redux/actions/A_Splash";
 
 class TodoList extends Component {
   componentDidMount = () => {
@@ -34,11 +35,18 @@ class TodoList extends Component {
       searchTerm,
 
       refresh,
+      isDarkTheme,
     } = this.props;
 
     return (
-      <View style={styles.container}>
-        <Header Navigation={navigation} _SyncData={__.syncData} />
+      <View
+        style={[styles.container, { backgroundColor: Colors(isDarkTheme).bg }]}>
+        <Header
+          Navigation={navigation}
+          IsDarkTheme={isDarkTheme}
+          _SyncData={__.syncData}
+          _ToggleTheme={__.toggleTheme}
+        />
         <Text style={styles.center}>{Strings.s1}</Text>
         <LongListView
           _RefreshData={__.GetListData}
@@ -47,6 +55,7 @@ class TodoList extends Component {
           Loading={Loading}
           Error={Error}
           Status={Status}
+          IsDarkTheme={isDarkTheme}
           ListItem={ListItem}
           ListItemProps={{ navigation: navigation, refresh: refresh }}
           SearchText={searchTerm}
@@ -67,6 +76,7 @@ export default connect(
     searchTerm: __.R_TodoList.searchTerm,
 
     refresh: __.R_TodoList.refresh,
+    isDarkTheme: __.R_Splash.isDarkTheme,
   }),
   dispatch => ({
     __: bindActionCreators(
@@ -75,6 +85,7 @@ export default connect(
         syncData,
         AddDataToListview,
         changeSearchTermText,
+        toggleTheme,
       }),
       dispatch,
     ),

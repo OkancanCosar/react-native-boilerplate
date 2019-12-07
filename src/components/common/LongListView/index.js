@@ -20,6 +20,7 @@ const LongListView = ({
   List,
   ListItem,
   ListItemProps,
+  IsDarkTheme,
   _RefreshData,
   _AddMoreData,
   SearchText,
@@ -32,6 +33,7 @@ const LongListView = ({
   return (
     <View style={styles.container}>
       <SearchInput
+        IsDarkTheme={IsDarkTheme}
         SearchText={SearchText}
         _OnChangeText={_OnSearchTextChange}
       />
@@ -50,7 +52,11 @@ const LongListView = ({
           setTimeout(() => _list && _list.endRefresh(), 200);
         }}
         renderIndexPath={({ row }) => (
-          <ListItem Item={List[row]} ListItemProps={ListItemProps} />
+          <ListItem
+            Item={List[row]}
+            ListItemProps={ListItemProps}
+            IsDarkTheme={IsDarkTheme}
+          />
         )}
       />
     </View>

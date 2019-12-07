@@ -99,6 +99,12 @@ $ yarn createScreen ExampleScreenName
 ```console
 $ yarn createListScreen ExampleListScreenName
 ```
+> Örnek: 
+
+> 1. $ yarn createListScreen Photos
+> 2. {{{{{ SYNCTIME'ı silmeden }}}}} id, title ....vb gerekli tüm db tablolarını ekle src/database/realm.js
+> 3. src\config\EndPoints.js oluşan linki kontrol et.
+> 4.	Aynı şekilde src\config\Network.js'deki istek yöntemini kontol et (POST, GET, Parametreler....)
 
 ### Projeye yeni bir ortak kullanılan component eklemek için dosyalarını oluşturma
 
@@ -138,4 +144,4 @@ $ yarn postinstall
 
 ## ROADMAP
 
-1- Tema ile gece/gündüz farklı görüntü elde etmek
+1- Gelişmiş tema opsiyonları ekleme

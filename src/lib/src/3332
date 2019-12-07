@@ -2,10 +2,24 @@ import React from "react";
 
 import { Header as RNEHeader, Icon } from "react-native-elements";
 
-const Header = ({ Navigation, _SyncData }) => {
+const Header = ({ Navigation, IsDarkTheme, _SyncData, _ToggleTheme }) => {
+  const darkHeaderStyle = {
+    backgroundColor: "black",
+  };
+
   return (
     <RNEHeader
-      leftComponent={{ icon: "rowing", color: "#fff" }}
+      containerStyle={IsDarkTheme ? darkHeaderStyle : ""}
+      barStyle={IsDarkTheme ? "dark-content" : "light-content"}
+      leftComponent={
+        <Icon
+          size={50}
+          name="theme-light-dark"
+          type="material-community"
+          color="red"
+          onPress={() => _ToggleTheme()}
+        />
+      }
       centerComponent={{ text: "TEMPNAME", style: { color: "#fff" } }}
       rightComponent={
         <Icon

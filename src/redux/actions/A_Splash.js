@@ -5,6 +5,7 @@ import NetInfo from "@react-native-community/netinfo";
 export const types = {
   CHANGE_NET_CONNECTION_TYPE: "İnternet bağlantı durumu değişti.",
   CHANGE_DIMENSION: "Dimension değişti",
+  CHANGE_THEME: "Seçili tema değişti.",
 };
 
 export const addConnectionListeners = navigation => async dispatch => {
@@ -23,4 +24,7 @@ export const addConnectionListeners = navigation => async dispatch => {
     const stat = dim.height >= dim.width ? true : false;
     dispatch({ type: types.CHANGE_DIMENSION, payload: stat });
   });
+};
+export const toggleTheme = () => dispatch => {
+  dispatch({ type: types.CHANGE_THEME });
 };

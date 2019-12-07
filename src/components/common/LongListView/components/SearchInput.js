@@ -3,12 +3,11 @@ import { SearchBar } from "react-native-elements";
 
 import { Strings } from "../../../../config";
 
-const SearchInput = ({ SearchText, _OnChangeText }) => {
+const SearchInput = ({ SearchText, IsDarkTheme, _OnChangeText }) => {
   return (
     <SearchBar
-      platform={"ios"}
       cancelButtonTitle={Strings.Clean}
-      lightTheme={true}
+      lightTheme={!IsDarkTheme}
       placeholder={Strings.SearchInputPlaceholder}
       onChangeText={_OnChangeText}
       value={SearchText}

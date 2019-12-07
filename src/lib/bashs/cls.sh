@@ -84,7 +84,7 @@ sed -i "s/${T8}/${1}: ${1}.ID,\n    ${T8}/" "${CONFIG_PATH}/Constants.js"
 sed -i "s/${T9}/, ${1} ${T9}/" "${CONFIG_PATH}/Constants.js"
 
 #### realm.js düzenleme
-sed -i "s/${T10}/export class ${1} {\n  static DbName = \"tbl_${1}\";\n\n    static SYNCTIME = \"syncTime\";\n    static ID = \"id\";\n\n  static schema = {\n    name: ${1}.DbName,\n    primaryKey: ${1}.ID,\n    properties: {\n      [${1}.SYNCTIME]: \"int\",\n      [${1}.ID]: \"int\",\n    },\n  };\n}\n${T10}/" "${DB_PATH}/realm.js"
+sed -i "s/${T10}/export class ${1} {\n  static DbName = \"tbl_${1}\";\n\n  static SYNCTIME = \"syncTime\";\n  static ID = \"id\";\n\n  static schema = {\n    name: ${1}.DbName,\n    primaryKey: ${1}.ID,\n    properties: {\n      [${1}.SYNCTIME]: \"int\",\n      [${1}.ID]: \"int\",\n    },\n  };\n}\n${T10}/" "${DB_PATH}/realm.js"
 sed -i "s/${T11}/${1}.schema,\n    ${T11}/" "${DB_PATH}/realm.js"
 
 #### componentler için header index ve listitem eklenecek.

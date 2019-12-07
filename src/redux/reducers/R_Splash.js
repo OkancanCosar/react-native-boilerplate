@@ -4,6 +4,7 @@ const initialState = {
   connectionType: null,
   isConnected: false,
   isPortrait: false,
+  isDarkTheme: false,
 };
 
 export default (state = initialState, action) => {
@@ -20,6 +21,9 @@ export default (state = initialState, action) => {
 
     case types.CHANGE_DIMENSION:
       return { ...state, isPortrait: action.payload };
+
+    case types.CHANGE_THEME:
+      return { ...state, isDarkTheme: !state.isDarkTheme };
 
     default:
       return state;
