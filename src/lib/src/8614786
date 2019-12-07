@@ -11,7 +11,7 @@ export const isTableEmpty = () => {
   try {
     return Realm.slice(0, 1).length < 0;
   } catch (error) {
-    console.error("TEMPNAMEDB::isTableEmpty:: " + error);
+    console.error(`${DbName}DB::isTableEmpty::${error}`);
     return true;
   }
 };
@@ -24,7 +24,7 @@ export const isTableOutOfDate = () => {
       DBHelper.getDayVal(DBHelper.getNow())
     );
   } catch (error) {
-    console.error("TEMPNAMEDB::isTableOutOfDate:: " + error);
+    console.error(`${DbName}DB::isTableOutOfDate::${error}`);
     return true;
   }
 };
@@ -33,7 +33,7 @@ export const getAllTEMPNAMEFromDB = () => {
   try {
     return Realm.sorted(Constants.SortColumns.TEMPNAME);
   } catch (error) {
-    console.error("TEMPNAMEDB::getAllTEMPNAMEFromDB:: " + error);
+    console.error(`${DbName}DB::getAllTEMPNAMEFromDB::${error}`);
     return false;
   }
 };
@@ -48,7 +48,6 @@ export const insertTEMPNAMEIntoDB = (Data, dispatch) => {
         Data.forEach(element => {
           // data düzenlemeliyiz.
           element[TEMPNAME.SYNCTIME] = SyncTime;
-
           // sunucu verisini local tablolara güncelle yada ekle.
           realm.create(DbName, element, true);
         });
@@ -62,22 +61,7 @@ export const insertTEMPNAMEIntoDB = (Data, dispatch) => {
     return true;
   } catch (error) {
     dispatch({ type: types.INSERT_DB_FAIL, payload: error });
-    console.error("TEMPNAMEDB::insertTEMPNAMEIntoLocalDatabase:: " + error);
-    return false;
-  }
-};
-
-// TODO: silinecek
-export const deleteAllPlans = () => {
-  try {
-    realm.write(() => {
-      realm.delete(Realm);
-    });
-    console.log("gfdj");
-
-    return true;
-  } catch (error) {
-    console.error("deleteAllPlans:: " + error);
+    console.error(`${DbName}DB::insertTEMPNAMEIntoLocalDatabase::${error}`);
     return false;
   }
 };

@@ -29,8 +29,8 @@ export default (state = INITIAL_STATE, actions) => {
         ...state,
         Loading: false,
         Error: null,
-        FullList: actions.payload,
-        List: actions.payload.slice(0, Constants.ListBatchSize),
+        FullList: actions.payload && actions.payload.length && actions.payload,
+        List: actions.payload && actions.payload.length && actions.payload.slice(0, Constants.ListBatchSize),
         Status: null,
       };
     case types.GET_SERVER_FAIL:
@@ -56,8 +56,8 @@ export default (state = INITIAL_STATE, actions) => {
         ...state,
         Loading: false,
         Error: null,
-        FullList: actions.payload,
-        List: actions.payload.slice(0, Constants.ListBatchSize),
+        FullList: actions.payload && actions.payload.length && actions.payload,
+        List: actions.payload && actions.payload.length && actions.payload.slice(0, Constants.ListBatchSize),
         Status: null,
       };
     case types.GET_DB_FAIL:
@@ -68,8 +68,6 @@ export default (state = INITIAL_STATE, actions) => {
         Error: actions.payload,
         Status: null,
       };
-
-    //* LOCAL VERİTABANINA KAYIT İŞLEMLERİ
 
     //* REFRESH İŞLEMLERİ
     case types.REFRESH_LIST_START:
